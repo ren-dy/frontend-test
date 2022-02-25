@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">Frontend Test</a>
+
+    <ng-template [ngIf]="user" [ngIfElse]="noUser">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" aria-current="page" routerLink="/posts" routerLinkActive="active">Posts</a>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <div class="dropdown">
+          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ user.name }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+            <li><button class="dropdown-item" type="button" (click)="viewProfile()">Profile</button></li>
+            <li><button class="dropdown-item" type="button" (click)="logout()">Logout</button></li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #noUser>
+      <div class="d-flex">
+        <button class="btn btn-primary" type="button" (click)="viewLogin()">
+          Login
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

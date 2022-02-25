@@ -1,0 +1,49 @@
+<div class="py-4"></div>
+
+<div class="container mt-4 pb-4">
+
+  <div class="card" *ngIf="post">
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-sm-3">
+
+          <h5>{{ post.user.name }}</h5>
+
+        </div>
+        <div class="col-sm-9">
+
+          <div class="fw-bold">{{ post.title }}</div>
+
+          <p>{{ post.body }}</p>
+
+          <ng-template [ngIf]="showComments" [ngIfElse]="displayComments">
+            <h5 class="text-muted">All comments ({{ post.comments.length }})</h5>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngFor="let c of post.comments">
+
+                <div class="fw-bold">{{ c.email }}</div>
+                {{ c.body }}
+
+              </li>
+            </ul>
+          </ng-template>
+
+          <ng-template #displayComments>
+            <span class="text-muted" *ngIf="post.comments">
+              Comments: {{ post.comments.length | number }}
+            </span>
+          </ng-template>
+
+          <button class="btn btn-sm btn-link" *ngIf="!showComments" (click)="viewComments()">
+            View comments
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

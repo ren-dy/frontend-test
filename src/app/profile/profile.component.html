@@ -1,0 +1,27 @@
+<div class="py-4"></div>
+
+<div class="container mt-4 pb-4">
+
+  <div class="card" *ngIf="user">
+    <div class="card-body">
+
+      <dl class="row">
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">{{ user.name }}</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">{{ user.email }}</dd>
+
+        <dt class="col-sm-3">Address</dt>
+        <dd class="col-sm-9">
+          {{ user.address.street }} {{ user.address.suite }}, {{ user.address.city }}
+        </dd>
+
+        <dt class="col-sm-3">Phone</dt>
+        <dd class="col-sm-9">{{ user.phone }}</dd>
+      </dl>
+
+    </div>
+  </div>
+
+</div>

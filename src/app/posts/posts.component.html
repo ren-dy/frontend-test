@@ -1,0 +1,62 @@
+<div class="py-4"></div>
+
+<div class="container mt-4 pb-4">
+
+  <div class="card">
+    <div class="card-body">
+
+      <input #inputSearch type="search" class="form-control" placeholder="Search" (input)="getPosts(inputSearch.value)">
+
+    </div>
+    <div class="card-body border-top">
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let p of paginatedPosts?.[currentPage - 1]">
+
+          <div class="row">
+            <div class="col-sm-3">
+
+              <h5>{{ p.user.name }}</h5>
+
+            </div>
+            <div class="col-sm-9">
+
+              <div>{{ p.title }}</div>
+
+              <span class="text-muted" *ngIf="p.comments">
+                Comments: {{ p.comments | number }}
+              </span>
+
+              <a class="btn btn-sm btn-link" routerLink="/posts/{{ p.id }}">
+                Detail
+              </a>
+
+            </div>
+          </div>
+
+        </li>
+      </ul>
+
+    </div>
+    <div class="card-body border-top">
+
+      <nav>
+        <ul class="pagination justify-content-end">
+          <li class="page-item">
+            <button class="page-link" type="button" (click)="goto('prev')">Previous</button>
+          </li>
+          <li class="page-item" [class.active]="id == currentPage - 1" *ngFor="let p of paginatedPosts; index as id">
+            <button class="page-link" type="button" (click)="goto(id + 1)">
+              {{ id + 1 | number }}
+            </button>
+          </li>
+          <li class="page-item">
+            <button class="page-link" type="button" (click)="goto('next')">Next</button>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+
+</div>
